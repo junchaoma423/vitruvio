@@ -13,27 +13,27 @@ dataExtraction.averageStepsForCyclicalMotion = false;
 dataExtraction.allowableDeviation = 0.05; % [m] Deviation between neighbouring points. If the deviation is larger, additional points are interpolated.
 
 %% LEG PROPERTIES
-legCount  = 4;                  % Accepts values from 1 to 4.
-linkCount = 2;                  % Accepts values from 2 to 4. [thigh, shank, foot, phalanges]. Hip link connects HAA and HFE but is not included in link count.
-configSelection = 'X';          % X or M. By default, the HFE is outwards from HAA but for M configuration this may not be desired. To avoid this set the hip length to negative in getRobotProperties.m.
+legCount  = 2;                  % Accepts values from 1 to 4.
+linkCount = 4;                  % Accepts values from 2 to 4. [thigh, shank, foot, phalanges]. Hip link connects HAA and HFE but is not included in link count.
+configSelection = 'M';          % X or M. By default, the HFE is outwards from HAA but for M configuration this may not be desired. To avoid this set the hip length to negative in getRobotProperties.m.
 
 % If true, actuators are positioned in the joint which contributes to leg
 % mass and inertia. If false, there is no actuator mass at joints, the 
 % actuator is assumed to be in the body.
-actuateJointDirectly.HAA = true; 
-actuateJointDirectly.HFE = true; 
-actuateJointDirectly.KFE = true;
-actuateJointDirectly.AFE = true;
-actuateJointDirectly.DFE = true;
+actuateJointDirectly.HAA = false; 
+actuateJointDirectly.HFE = false; 
+actuateJointDirectly.KFE = false;
+actuateJointDirectly.AFE = false;
+actuateJointDirectly.DFE = false;
 
 %% ACTUATOR SELECTION
 % Select from: {ANYdrive, Neo, RoboDrive, Dynamixel64R, DynamixelXM540, Other} or add a new actuator in
 % getActuatorProperties
-actuatorSelection.HAA = 'ANYdrive'; 
-actuatorSelection.HFE = 'ANYdrive'; 
-actuatorSelection.KFE = 'ANYdrive';
-actuatorSelection.AFE = 'ANYdrive'; 
-actuatorSelection.DFE = 'ANYdrive'; 
+actuatorSelection.HAA = 'A1'; 
+actuatorSelection.HFE = 'A1'; 
+actuatorSelection.KFE = 'A1';
+actuatorSelection.AFE = 'A1'; 
+actuatorSelection.DFE = 'A1'; 
 
 %% TRANSMISSION
 % If joints are remotely actuated, specify the transmission method to
