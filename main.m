@@ -14,14 +14,14 @@ dataExtraction.allowableDeviation = 0.05; % [m] Deviation between neighbouring p
 
 %% LEG PROPERTIES
 legCount  = 2;                  % Accepts values from 1 to 4.
-linkCount = 4;                  % Accepts values from 2 to 4. [thigh, shank, foot, phalanges]. Hip link connects HAA and HFE but is not included in link count.
+linkCount = 2;                  % Accepts values from 2 to 4. [thigh, shank, foot, phalanges]. Hip link connects HAA and HFE but is not included in link count.
 configSelection = 'M';          % X or M. By default, the HFE is outwards from HAA but for M configuration this may not be desired. To avoid this set the hip length to negative in getRobotProperties.m.
 
 % If true, actuators are positioned in the joint which contributes to leg
 % mass and inertia. If false, there is no actuator mass at joints, the 
 % actuator is assumed to be in the body.
-actuateJointDirectly.HAA = false; 
-actuateJointDirectly.HFE = false; 
+actuateJointDirectly.HAA = true; 
+actuateJointDirectly.HFE = true; 
 actuateJointDirectly.KFE = false;
 actuateJointDirectly.AFE = false;
 actuateJointDirectly.DFE = false;
@@ -52,7 +52,7 @@ transmissionMethod.DFE = 'belt'; % Along foot link
 %% HIP ORIENTATION
 % if true: Mammal configuration. Offset from HAA to HFE parallel to the body as with ANYmal 
 % if false: Spider configuration. Hip link is perpendicular to body length.
-hipParalleltoBody = true;
+hipParalleltoBody = false;
 
 %% SIMULATE ADDITIONAL PAYLOAD
 % Simulate additional payload as point mass at CoM. Approximates a payload
@@ -92,7 +92,7 @@ heuristic.torqueAngle.kTorsionalSpring = 100; % Spring constant for torsional sp
 
 %% VISUALIZATION OPTIONS
 saveFiguresToPDF                 = false;  % Figures are saved to results.pdf in current folder. This adds significant computation time.
-robotVisualization.view          = false;  % Visualization of nominal robot
+robotVisualization.view          = true;  % Visualization of nominal robot
     robotVisualization.oneLeg    = false;  % View a single leg tracking the trajectory.
     robotVisualization.allLegs   = true;   % View motion with all legs (incompatible with averageStepsForCyclicalMotion = true)
     robotVisualization.torso     = false;  % Also displays a torso at the front of the robot, dimensions defined in visualizeRobot.m
@@ -117,17 +117,17 @@ optimizationProperties.viz.displayBestCurrentDesign = true; % Display chart of c
 %%% Add your trajectory data file here with name class_task %%%
 dataSelection.yourTrajectoryData = false;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-dataSelection.ANYmalBear_fastTrot = true; 
+dataSelection.ANYmalBear_fastTrot = false; 
 dataSelection.mini_pronk          = false;
 dataSelection.hopper_hop          = false;
 
 optimizationCount = 1; % Set to 1 to run the optimization only once. For values >1 the leg is reoptimized with the same settings. This allows for an easy check if the same optimal solution is found each time the optimization is run.
 
 %% RUN OPTIMIZATION
-optimizationProperties.runOptimization = false; % If true, selected legs will be optimized.
+optimizationProperties.runOptimization = true; % If true, selected legs will be optimized.
 % Select which legs are to be optimized
 optimizeLeg.LF = true; 
-optimizeLeg.RF = false; 
+optimizeLeg.RF = true; 
 optimizeLeg.LH = false; 
 optimizeLeg.RH = false;
 
@@ -139,9 +139,9 @@ optimizationProperties.options.populationSize = 10;
 % Impose limits on maximum joint torque, speed and power.
 % The limiting values are defined for each actuator in getActuatorProperties. A penalty term is incurred
 % for violations of these limits.
-imposeJointLimits.maxTorque = false;
-imposeJointLimits.maxqdot   = false;
-imposeJointLimits.maxPower  = false;
+imposeJointLimits.maxTorque = true;
+imposeJointLimits.maxqdot   = true;
+imposeJointLimits.maxPower  = true;
 imposeJointLimits.limitingValue = 0.9; % Specified as a ratio of the actuator limit. Penalize when actuators loaded beyond this ratio.
 
 % Set weights for cost function terms. Total means summed over all joints in the leg.

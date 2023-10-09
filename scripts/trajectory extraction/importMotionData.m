@@ -7,10 +7,10 @@ clear;
 close all;
 
 %% Enter path to bag containing trajectory data
-pathToTrajectoryData =  'pathToBagFile.bag';
-saveName = 'trajectoryDataFileName.mat';
-legCount = 4; % Specify number of legs from 1 to 4.
-m = 50;   % mass of the robot used in Towr
+pathToTrajectoryData =  'towr_trajectory.bag';
+saveName = 'hector.mat';
+legCount = 2; % Specify number of legs from 1 to 4.
+m = 14.5;   % mass of the robot used in Towr
 
 %% Extract the desired 3D vectors from the bag
 bag_all = rosbag(pathToTrajectoryData);
@@ -22,6 +22,11 @@ selectOptions = {'Time', [t0 T] };
 bag = select(bag_all, selectOptions{:});
 
 % Base pose
+test = select(bag, 'Topic', '/xpp/state_des');
+test_des = timeseries(test, 'Base.Pose.Position.X', 'Base.Pose.Position.Y')
+
+
+
 bag_base_pose = select(bag, 'Topic', 'base_pose');
 ts_base_pos = timeseries(bag_base_pose, 'Position.X', 'Position.Y', 'Position.Z', ... 
                                         'Orientation.X', 'Orientation.Y', 'Orientation.Z', 'Orientation.W');

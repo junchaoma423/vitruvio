@@ -6,8 +6,8 @@
 function robotProperties = getRobotProperties(robotSelection, transmissionMethod, actuateJointDirectly, jointNames, linkNames, linkCount)
     %% Your robot
     %%% Add your robot properties %%%
-    robot.yourRobot.mass.total = 38.8; % only used to calculated cost of transport
-    robot.yourRobot.legCount   = 4;
+    robot.yourRobot.mass.total = 14; % only used to calculated cost of transport
+    robot.yourRobot.legCount   = 2;
     
     % Density of each link
     % kg/m^3. Density values calculated to give correct link mass when link
@@ -23,10 +23,10 @@ function robotProperties = getRobotProperties(robotSelection, transmissionMethod
     robot.yourRobot.EE(2).mass = 0.1402;
 
     % Offset from nominal CoM position to base hip attachment for each leg.
-    robot.yourRobot.xNom(1) = 0.225;
-    robot.yourRobot.xNom(2) = 0.225;
-    robot.yourRobot.yNom(1) = 0.11;
-    robot.yourRobot.yNom(2) = 0.11;
+    robot.yourRobot.xNom(1) = 0.047;
+    robot.yourRobot.xNom(2) = 0.047;
+    robot.yourRobot.yNom(1) = 0.095;
+    robot.yourRobot.yNom(2) = 0.095;
     robot.yourRobot.zNom = 0; % offset from CoM to HAA in z direction. Positive value means HAA above CoM.
     
     robot.yourRobot.nomHipPos.LF = [ robot.yourRobot.xNom(1),  robot.yourRobot.yNom(1), robot.yourRobot.zNom];
@@ -69,9 +69,9 @@ function robotProperties = getRobotProperties(robotSelection, transmissionMethod
     robot.yourRobot.transmissionGearRatio.DFE(1) = 1;  robot.yourRobot.transmissionGearRatio.DFE(2) = 1;    
         
     % Base dimensions used for visualization - visualized as a box
-    robot.yourRobot.baseLength = 0.6;
-    robot.yourRobot.baseWidth  = 0.24;
-    robot.yourRobot.baseHeight = 0.2;     
+    robot.yourRobot.baseLength = 0.194;
+    robot.yourRobot.baseWidth  = 0.114;
+    robot.yourRobot.baseHeight = 0.313;     
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
      %% ANYmal Bear
